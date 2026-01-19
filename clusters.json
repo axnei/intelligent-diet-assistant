@@ -1,0 +1,1542 @@
+{
+  "n_clusters": 5,
+  "features": [
+    "Calories",
+    "Protein",
+    "Fat",
+    "Carbs",
+    "Fiber"
+  ],
+  "items": [
+    {
+      "food": "Cows' milk",
+      "cluster": 3,
+      "calories": 660.0,
+      "protein": 32.0,
+      "fat": 40.0,
+      "carbs": 48.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Buttermilk",
+      "cluster": 1,
+      "calories": 127.0,
+      "protein": 9.0,
+      "fat": 5.0,
+      "carbs": 13.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Evaporated, undiluted",
+      "cluster": 3,
+      "calories": 345.0,
+      "protein": 16.0,
+      "fat": 20.0,
+      "carbs": 24.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Powdered milk",
+      "cluster": 3,
+      "calories": 515.0,
+      "protein": 27.0,
+      "fat": 28.0,
+      "carbs": 39.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Goats' milk",
+      "cluster": 1,
+      "calories": 165.0,
+      "protein": 8.0,
+      "fat": 10.0,
+      "carbs": 11.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "(1/2 cup ice cream)",
+      "cluster": 4,
+      "calories": 690.0,
+      "protein": 24.0,
+      "fat": 24.0,
+      "carbs": 70.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Cocoa",
+      "cluster": 1,
+      "calories": 235.0,
+      "protein": 8.0,
+      "fat": 11.0,
+      "carbs": 26.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "skim. milk",
+      "cluster": 1,
+      "calories": 128.0,
+      "protein": 18.0,
+      "fat": 4.0,
+      "carbs": 13.0,
+      "fiber": 1.0
+    },
+    {
+      "food": "(cornstarch)",
+      "cluster": 1,
+      "calories": 275.0,
+      "protein": 9.0,
+      "fat": 10.0,
+      "carbs": 40.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Custard",
+      "cluster": 1,
+      "calories": 285.0,
+      "protein": 13.0,
+      "fat": 14.0,
+      "carbs": 28.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Ice cream",
+      "cluster": 1,
+      "calories": 300.0,
+      "protein": 6.0,
+      "fat": 18.0,
+      "carbs": 29.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Ice milk",
+      "cluster": 1,
+      "calories": 275.0,
+      "protein": 9.0,
+      "fat": 10.0,
+      "carbs": 32.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Cream or half-and-half",
+      "cluster": 1,
+      "calories": 170.0,
+      "protein": 4.0,
+      "fat": 15.0,
+      "carbs": 5.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "or whipping",
+      "cluster": 3,
+      "calories": 430.0,
+      "protein": 2.0,
+      "fat": 44.0,
+      "carbs": 3.0,
+      "fiber": 1.0
+    },
+    {
+      "food": "Cheese",
+      "cluster": 1,
+      "calories": 240.0,
+      "protein": 30.0,
+      "fat": 11.0,
+      "carbs": 6.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Cheddar, grated cup",
+      "cluster": 1,
+      "calories": 226.0,
+      "protein": 14.0,
+      "fat": 19.0,
+      "carbs": 1.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Cream cheese",
+      "cluster": 1,
+      "calories": 105.0,
+      "protein": 2.0,
+      "fat": 11.0,
+      "carbs": 1.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Eggs Scrambled or fried",
+      "cluster": 1,
+      "calories": 220.0,
+      "protein": 13.0,
+      "fat": 16.0,
+      "carbs": 1.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Butter",
+      "cluster": 2,
+      "calories": 113.0,
+      "protein": 114.0,
+      "fat": 115.0,
+      "carbs": 118.0,
+      "fiber": 117.0
+    },
+    {
+      "food": "Butter",
+      "cluster": 2,
+      "calories": 113.0,
+      "protein": 114.0,
+      "fat": 115.0,
+      "carbs": 118.0,
+      "fiber": 117.0
+    },
+    {
+      "food": "Hydrogenated cooking fat",
+      "cluster": 3,
+      "calories": 665.0,
+      "protein": 0.0,
+      "fat": 100.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Lard",
+      "cluster": 3,
+      "calories": 992.0,
+      "protein": 0.0,
+      "fat": 110.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Corn oil",
+      "cluster": 1,
+      "calories": 125.0,
+      "protein": 0.0,
+      "fat": 14.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Olive oil",
+      "cluster": 1,
+      "calories": 125.0,
+      "protein": 0.0,
+      "fat": 14.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Safflower seed oil",
+      "cluster": 1,
+      "calories": 125.0,
+      "protein": 0.0,
+      "fat": 14.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Salt pork",
+      "cluster": 3,
+      "calories": 470.0,
+      "protein": 3.0,
+      "fat": 55.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Bacon",
+      "cluster": 1,
+      "calories": 95.0,
+      "protein": 4.0,
+      "fat": 8.0,
+      "carbs": 1.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Beef",
+      "cluster": 1,
+      "calories": 245.0,
+      "protein": 23.0,
+      "fat": 16.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Hamburger",
+      "cluster": 1,
+      "calories": 245.0,
+      "protein": 21.0,
+      "fat": 17.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Ground lean",
+      "cluster": 1,
+      "calories": 185.0,
+      "protein": 24.0,
+      "fat": 10.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Roast beef",
+      "cluster": 3,
+      "calories": 390.0,
+      "protein": 16.0,
+      "fat": 36.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Steak",
+      "cluster": 3,
+      "calories": 330.0,
+      "protein": 20.0,
+      "fat": 27.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Steak, lean, as round",
+      "cluster": 1,
+      "calories": 220.0,
+      "protein": 24.0,
+      "fat": 12.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Corned beef",
+      "cluster": 1,
+      "calories": 185.0,
+      "protein": 22.0,
+      "fat": 10.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Corned beef hash Dried",
+      "cluster": 1,
+      "calories": 115.0,
+      "protein": 19.0,
+      "fat": 4.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "chicken",
+      "cluster": 1,
+      "calories": 185.0,
+      "protein": 23.0,
+      "fat": 9.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Fried, breast or leg and thigh chicken",
+      "cluster": 1,
+      "calories": 245.0,
+      "protein": 25.0,
+      "fat": 15.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Roasted chicken",
+      "cluster": 1,
+      "calories": 290.0,
+      "protein": 25.0,
+      "fat": 20.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Chicken livers, fried",
+      "cluster": 1,
+      "calories": 140.0,
+      "protein": 22.0,
+      "fat": 14.0,
+      "carbs": 2.3,
+      "fiber": 0.0
+    },
+    {
+      "food": "Duck, domestic",
+      "cluster": 3,
+      "calories": 370.0,
+      "protein": 16.0,
+      "fat": 28.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Lamb, chop, broiled",
+      "cluster": 3,
+      "calories": 480.0,
+      "protein": 24.0,
+      "fat": 35.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Leg roasted",
+      "cluster": 1,
+      "calories": 314.0,
+      "protein": 20.0,
+      "fat": 14.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Shoulder, braised",
+      "cluster": 1,
+      "calories": 285.0,
+      "protein": 18.0,
+      "fat": 23.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Pork, chop, 1 thick",
+      "cluster": 1,
+      "calories": 260.0,
+      "protein": 16.0,
+      "fat": 21.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Ham pan-broiled",
+      "cluster": 1,
+      "calories": 290.0,
+      "protein": 16.0,
+      "fat": 22.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Ham, as ",
+      "cluster": 1,
+      "calories": 170.0,
+      "protein": 13.0,
+      "fat": 13.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Ham, canned, spiced",
+      "cluster": 1,
+      "calories": 165.0,
+      "protein": 8.0,
+      "fat": 14.0,
+      "carbs": 1.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Pork roast",
+      "cluster": 1,
+      "calories": 310.0,
+      "protein": 21.0,
+      "fat": 24.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Pork sausage",
+      "cluster": 3,
+      "calories": 475.0,
+      "protein": 18.0,
+      "fat": 44.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Turkey",
+      "cluster": 1,
+      "calories": 265.0,
+      "protein": 27.0,
+      "fat": 15.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Veal",
+      "cluster": 1,
+      "calories": 185.0,
+      "protein": 23.0,
+      "fat": 9.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Roast",
+      "cluster": 1,
+      "calories": 305.0,
+      "protein": 13.0,
+      "fat": 14.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Clams",
+      "cluster": 1,
+      "calories": 87.0,
+      "protein": 12.0,
+      "fat": 1.0,
+      "carbs": 2.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Cod",
+      "cluster": 1,
+      "calories": 170.0,
+      "protein": 28.0,
+      "fat": 5.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Crab meat",
+      "cluster": 1,
+      "calories": 90.0,
+      "protein": 14.0,
+      "fat": 2.0,
+      "carbs": 1.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Fish sticks fried",
+      "cluster": 1,
+      "calories": 200.0,
+      "protein": 19.0,
+      "fat": 10.0,
+      "carbs": 8.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Flounder",
+      "cluster": 1,
+      "calories": 200.0,
+      "protein": 30.0,
+      "fat": 8.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Haddock",
+      "cluster": 1,
+      "calories": 135.0,
+      "protein": 16.0,
+      "fat": 5.0,
+      "carbs": 6.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Halibut",
+      "cluster": 1,
+      "calories": 182.0,
+      "protein": 26.0,
+      "fat": 8.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Herring",
+      "cluster": 1,
+      "calories": 211.0,
+      "protein": 22.0,
+      "fat": 13.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Oysters",
+      "cluster": 0,
+      "calories": 231.0,
+      "protein": 232.0,
+      "fat": 233.0,
+      "carbs": 236.0,
+      "fiber": 235.0
+    },
+    {
+      "food": "Oyster stew",
+      "cluster": 1,
+      "calories": 125.0,
+      "protein": 19.0,
+      "fat": 6.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Salmon",
+      "cluster": 1,
+      "calories": 120.0,
+      "protein": 17.0,
+      "fat": 5.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Sardines",
+      "cluster": 1,
+      "calories": 180.0,
+      "protein": 22.0,
+      "fat": 9.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Scallops",
+      "cluster": 1,
+      "calories": 104.0,
+      "protein": 18.0,
+      "fat": 8.0,
+      "carbs": 10.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Shad",
+      "cluster": 1,
+      "calories": 170.0,
+      "protein": 20.0,
+      "fat": 10.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Shrimp",
+      "cluster": 1,
+      "calories": 110.0,
+      "protein": 23.0,
+      "fat": 1.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Swordfish",
+      "cluster": 1,
+      "calories": 180.0,
+      "protein": 27.0,
+      "fat": 6.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Tuna",
+      "cluster": 1,
+      "calories": 170.0,
+      "protein": 25.0,
+      "fat": 7.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Navy, baked with pork",
+      "cluster": 1,
+      "calories": 250.0,
+      "protein": 11.0,
+      "fat": 6.0,
+      "carbs": 37.0,
+      "fiber": 2.0
+    },
+    {
+      "food": "Red kidney",
+      "cluster": 1,
+      "calories": 230.0,
+      "protein": 15.0,
+      "fat": 1.0,
+      "carbs": 42.0,
+      "fiber": 2.5
+    },
+    {
+      "food": "Corn",
+      "cluster": 1,
+      "calories": 92.0,
+      "protein": 3.0,
+      "fat": 1.0,
+      "carbs": 21.0,
+      "fiber": 0.8
+    },
+    {
+      "food": "Dandelion greens",
+      "cluster": 1,
+      "calories": 80.0,
+      "protein": 5.0,
+      "fat": 1.0,
+      "carbs": 16.0,
+      "fiber": 3.2
+    },
+    {
+      "food": "Kale",
+      "cluster": 1,
+      "calories": 45.0,
+      "protein": 4.0,
+      "fat": 1.0,
+      "carbs": 8.0,
+      "fiber": 0.9
+    },
+    {
+      "food": "Parsnips",
+      "cluster": 1,
+      "calories": 95.0,
+      "protein": 2.0,
+      "fat": 1.0,
+      "carbs": 22.0,
+      "fiber": 3.0
+    },
+    {
+      "food": "Peppers with beef and crumbs",
+      "cluster": 1,
+      "calories": 255.0,
+      "protein": 19.0,
+      "fat": 9.0,
+      "carbs": 24.0,
+      "fiber": 1.0
+    },
+    {
+      "food": "French-fried",
+      "cluster": 1,
+      "calories": 155.0,
+      "protein": -1.0,
+      "fat": 7.0,
+      "carbs": 20.0,
+      "fiber": 0.4
+    },
+    {
+      "food": "Potatoes Mashed with milk and butter",
+      "cluster": 1,
+      "calories": 230.0,
+      "protein": 4.0,
+      "fat": 12.0,
+      "carbs": 28.0,
+      "fiber": 0.7
+    },
+    {
+      "food": "Potatoes, pan-tried",
+      "cluster": 1,
+      "calories": 268.0,
+      "protein": 4.0,
+      "fat": 14.0,
+      "carbs": 33.0,
+      "fiber": 0.4
+    },
+    {
+      "food": "Scalloped with cheese potatoes",
+      "cluster": 1,
+      "calories": 145.0,
+      "protein": 6.0,
+      "fat": 8.0,
+      "carbs": 14.0,
+      "fiber": 0.4
+    },
+    {
+      "food": "Soybeans",
+      "cluster": 1,
+      "calories": 260.0,
+      "protein": 22.0,
+      "fat": 11.0,
+      "carbs": 20.0,
+      "fiber": 3.2
+    },
+    {
+      "food": "Sweet potatoes",
+      "cluster": 1,
+      "calories": 155.0,
+      "protein": 2.0,
+      "fat": 1.0,
+      "carbs": 36.0,
+      "fiber": 1.0
+    },
+    {
+      "food": "Candied",
+      "cluster": 4,
+      "calories": 235.0,
+      "protein": 2.0,
+      "fat": 6.0,
+      "carbs": 80.0,
+      "fiber": 1.5
+    },
+    {
+      "food": "Turnip greens",
+      "cluster": 1,
+      "calories": 45.0,
+      "protein": 4.0,
+      "fat": 1.0,
+      "carbs": 8.0,
+      "fiber": 1.8
+    },
+    {
+      "food": "Avocado",
+      "cluster": 1,
+      "calories": 185.0,
+      "protein": 2.0,
+      "fat": 18.0,
+      "carbs": 6.0,
+      "fiber": 1.8
+    },
+    {
+      "food": "Blackberries",
+      "cluster": 1,
+      "calories": 85.0,
+      "protein": 2.0,
+      "fat": 1.0,
+      "carbs": 19.0,
+      "fiber": 6.6
+    },
+    {
+      "food": "Cherries",
+      "cluster": 1,
+      "calories": 100.0,
+      "protein": 2.0,
+      "fat": 1.0,
+      "carbs": 26.0,
+      "fiber": 2.0
+    },
+    {
+      "food": "Olives large",
+      "cluster": 1,
+      "calories": 72.0,
+      "protein": 1.0,
+      "fat": 10.0,
+      "carbs": 3.0,
+      "fiber": 0.8
+    },
+    {
+      "food": "OlivesRipe",
+      "cluster": 1,
+      "calories": 105.0,
+      "protein": 1.0,
+      "fat": 13.0,
+      "carbs": 1.0,
+      "fiber": 1.0
+    },
+    {
+      "food": "Raw, 3 by 2V",
+      "cluster": 1,
+      "calories": 100.0,
+      "protein": 1.0,
+      "fat": 1.0,
+      "carbs": 25.0,
+      "fiber": 2.0
+    },
+    {
+      "food": "Prunes",
+      "cluster": 4,
+      "calories": 300.0,
+      "protein": 3.0,
+      "fat": 1.0,
+      "carbs": 81.0,
+      "fiber": 0.8
+    },
+    {
+      "food": "Watermelon",
+      "cluster": 1,
+      "calories": 120.0,
+      "protein": 2.0,
+      "fat": 1.0,
+      "carbs": 29.0,
+      "fiber": 3.6
+    },
+    {
+      "food": "Bread, cracked wheat",
+      "cluster": 1,
+      "calories": 60.0,
+      "protein": 2.0,
+      "fat": 1.0,
+      "carbs": 12.0,
+      "fiber": 0.1
+    },
+    {
+      "food": "Rye",
+      "cluster": 1,
+      "calories": 55.0,
+      "protein": 2.0,
+      "fat": 1.0,
+      "carbs": 12.0,
+      "fiber": 0.1
+    },
+    {
+      "food": "Whole-wheat",
+      "cluster": 1,
+      "calories": 55.0,
+      "protein": 2.0,
+      "fat": 1.0,
+      "carbs": 11.0,
+      "fiber": 0.31
+    },
+    {
+      "food": "Corn bread ground meal",
+      "cluster": 1,
+      "calories": 100.0,
+      "protein": 3.0,
+      "fat": 4.0,
+      "carbs": 15.0,
+      "fiber": 0.3
+    },
+    {
+      "food": "Corn meal",
+      "cluster": 4,
+      "calories": 360.0,
+      "protein": 9.0,
+      "fat": 4.0,
+      "carbs": 74.0,
+      "fiber": 1.6
+    },
+    {
+      "food": "Flour",
+      "cluster": 3,
+      "calories": 460.0,
+      "protein": 39.0,
+      "fat": 22.0,
+      "carbs": 33.0,
+      "fiber": 2.9
+    },
+    {
+      "food": "Wheat (all purpose)",
+      "cluster": 4,
+      "calories": 400.0,
+      "protein": 12.0,
+      "fat": 1.0,
+      "carbs": 84.0,
+      "fiber": 0.3
+    },
+    {
+      "food": "Wheat (whole)",
+      "cluster": 4,
+      "calories": 390.0,
+      "protein": 13.0,
+      "fat": 2.0,
+      "carbs": 79.0,
+      "fiber": 2.8
+    },
+    {
+      "food": "Macaroni",
+      "cluster": 1,
+      "calories": 155.0,
+      "protein": 5.0,
+      "fat": 1.0,
+      "carbs": 32.0,
+      "fiber": 0.1
+    },
+    {
+      "food": "Noodles",
+      "cluster": 1,
+      "calories": 200.0,
+      "protein": 7.0,
+      "fat": 2.0,
+      "carbs": 37.0,
+      "fiber": 0.1
+    },
+    {
+      "food": "Oatmeal",
+      "cluster": 1,
+      "calories": 150.0,
+      "protein": 5.0,
+      "fat": 3.0,
+      "carbs": 26.0,
+      "fiber": 4.6
+    },
+    {
+      "food": "Pancakes 4\" diam.",
+      "cluster": 1,
+      "calories": 250.0,
+      "protein": 7.0,
+      "fat": 9.0,
+      "carbs": 28.0,
+      "fiber": 0.1
+    },
+    {
+      "food": "Wheat, pancakes 4\" diam.",
+      "cluster": 1,
+      "calories": 250.0,
+      "protein": 7.0,
+      "fat": 9.0,
+      "carbs": 28.0,
+      "fiber": 0.1
+    },
+    {
+      "food": "Popcorn salted",
+      "cluster": 1,
+      "calories": 152.0,
+      "protein": 3.0,
+      "fat": 7.0,
+      "carbs": 20.0,
+      "fiber": 0.5
+    },
+    {
+      "food": "Rice",
+      "cluster": 4,
+      "calories": 748.0,
+      "protein": 15.0,
+      "fat": 3.0,
+      "carbs": 154.0,
+      "fiber": 1.2
+    },
+    {
+      "food": "Rice polish",
+      "cluster": 1,
+      "calories": 132.0,
+      "protein": 6.0,
+      "fat": 6.0,
+      "carbs": 28.0,
+      "fiber": 1.2
+    },
+    {
+      "food": "Rolls",
+      "cluster": 3,
+      "calories": 411.0,
+      "protein": 3.0,
+      "fat": 12.0,
+      "carbs": 23.0,
+      "fiber": 0.1
+    },
+    {
+      "food": "whole-wheat",
+      "cluster": 1,
+      "calories": 102.0,
+      "protein": 4.0,
+      "fat": 1.0,
+      "carbs": 20.0,
+      "fiber": 0.1
+    },
+    {
+      "food": "Spaghetti with meat sauce",
+      "cluster": 1,
+      "calories": 285.0,
+      "protein": 13.0,
+      "fat": 10.0,
+      "carbs": 35.0,
+      "fiber": 0.5
+    },
+    {
+      "food": "with tomatoes and cheese",
+      "cluster": 1,
+      "calories": 210.0,
+      "protein": 6.0,
+      "fat": 5.0,
+      "carbs": 36.0,
+      "fiber": 0.5
+    },
+    {
+      "food": "Spanish rice",
+      "cluster": 1,
+      "calories": 217.0,
+      "protein": 4.0,
+      "fat": 4.0,
+      "carbs": 40.0,
+      "fiber": 1.2
+    },
+    {
+      "food": "Shredded wheat biscuit",
+      "cluster": 1,
+      "calories": 100.0,
+      "protein": 3.0,
+      "fat": 1.0,
+      "carbs": 23.0,
+      "fiber": 0.7
+    },
+    {
+      "food": "Waffles",
+      "cluster": 1,
+      "calories": 240.0,
+      "protein": 8.0,
+      "fat": 9.0,
+      "carbs": 30.0,
+      "fiber": 0.1
+    },
+    {
+      "food": "Wheat germ",
+      "cluster": 1,
+      "calories": 245.0,
+      "protein": 17.0,
+      "fat": 7.0,
+      "carbs": 34.0,
+      "fiber": 2.5
+    },
+    {
+      "food": "Wheat-germ cereal toasted",
+      "cluster": 1,
+      "calories": 260.0,
+      "protein": 20.0,
+      "fat": 7.0,
+      "carbs": 36.0,
+      "fiber": 2.5
+    },
+    {
+      "food": "Wheat meal cereal unrefined",
+      "cluster": 1,
+      "calories": 103.0,
+      "protein": 4.0,
+      "fat": 1.0,
+      "carbs": 25.0,
+      "fiber": 0.7
+    },
+    {
+      "food": "Wheat, cooked",
+      "cluster": 1,
+      "calories": 275.0,
+      "protein": 12.0,
+      "fat": 1.0,
+      "carbs": 35.0,
+      "fiber": 4.4
+    },
+    {
+      "food": "Bean soups",
+      "cluster": 1,
+      "calories": 190.0,
+      "protein": 8.0,
+      "fat": 5.0,
+      "carbs": 30.0,
+      "fiber": 0.6
+    },
+    {
+      "food": "Beef soup",
+      "cluster": 1,
+      "calories": 100.0,
+      "protein": 6.0,
+      "fat": 4.0,
+      "carbs": 11.0,
+      "fiber": 0.5
+    },
+    {
+      "food": "Bouillon",
+      "cluster": 1,
+      "calories": 24.0,
+      "protein": 5.0,
+      "fat": 0.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "chicken soup",
+      "cluster": 1,
+      "calories": 75.0,
+      "protein": 4.0,
+      "fat": 2.0,
+      "carbs": 10.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Clam chowder",
+      "cluster": 1,
+      "calories": 85.0,
+      "protein": 5.0,
+      "fat": 2.0,
+      "carbs": 12.0,
+      "fiber": 0.5
+    },
+    {
+      "food": "Cream soups",
+      "cluster": 1,
+      "calories": 200.0,
+      "protein": 7.0,
+      "fat": 12.0,
+      "carbs": 18.0,
+      "fiber": 1.2
+    },
+    {
+      "food": "Noodle",
+      "cluster": 1,
+      "calories": 115.0,
+      "protein": 6.0,
+      "fat": 4.0,
+      "carbs": 13.0,
+      "fiber": 0.2
+    },
+    {
+      "food": "Split-pea soup",
+      "cluster": 1,
+      "calories": 147.0,
+      "protein": 8.0,
+      "fat": 3.0,
+      "carbs": 25.0,
+      "fiber": 0.5
+    },
+    {
+      "food": "Tomato soup",
+      "cluster": 1,
+      "calories": 175.0,
+      "protein": 6.0,
+      "fat": 7.0,
+      "carbs": 22.0,
+      "fiber": 0.5
+    },
+    {
+      "food": "Vegetable",
+      "cluster": 1,
+      "calories": 80.0,
+      "protein": 4.0,
+      "fat": 2.0,
+      "carbs": 14.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Apple betty",
+      "cluster": 1,
+      "calories": 150.0,
+      "protein": 1.0,
+      "fat": 4.0,
+      "carbs": 29.0,
+      "fiber": 0.5
+    },
+    {
+      "food": "Bread pudding",
+      "cluster": 4,
+      "calories": 374.0,
+      "protein": 11.0,
+      "fat": 12.0,
+      "carbs": 56.0,
+      "fiber": 0.2
+    },
+    {
+      "food": "Chocolate fudge",
+      "cluster": 4,
+      "calories": 420.0,
+      "protein": 5.0,
+      "fat": 14.0,
+      "carbs": 70.0,
+      "fiber": 0.3
+    },
+    {
+      "food": "Fruit cake",
+      "cluster": 1,
+      "calories": 105.0,
+      "protein": 2.0,
+      "fat": 4.0,
+      "carbs": 17.0,
+      "fiber": 0.2
+    },
+    {
+      "food": "Sponge cake",
+      "cluster": 1,
+      "calories": 115.0,
+      "protein": 3.0,
+      "fat": 2.0,
+      "carbs": 22.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Marshmallows",
+      "cluster": 1,
+      "calories": 98.0,
+      "protein": 1.0,
+      "fat": 0.0,
+      "carbs": 23.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Milk chocolate",
+      "cluster": 1,
+      "calories": 290.0,
+      "protein": 2.0,
+      "fat": 6.0,
+      "carbs": 44.0,
+      "fiber": 0.2
+    },
+    {
+      "food": "Ice cream",
+      "cluster": 1,
+      "calories": 250.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 0.0,
+      "fiber": 10.0
+    },
+    {
+      "food": "Ices",
+      "cluster": 1,
+      "calories": 117.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 48.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Jellies",
+      "cluster": 1,
+      "calories": 50.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 13.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Molasses",
+      "cluster": 1,
+      "calories": 45.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 11.0,
+      "fiber": 8.0
+    },
+    {
+      "food": "Cane Syrup",
+      "cluster": 1,
+      "calories": 50.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 13.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "9\" diam. pie",
+      "cluster": 4,
+      "calories": 330.0,
+      "protein": 3.0,
+      "fat": 13.0,
+      "carbs": 53.0,
+      "fiber": 0.1
+    },
+    {
+      "food": "Cherry Pie",
+      "cluster": 4,
+      "calories": 340.0,
+      "protein": 3.0,
+      "fat": 13.0,
+      "carbs": 55.0,
+      "fiber": 0.1
+    },
+    {
+      "food": "Custard",
+      "cluster": 1,
+      "calories": 265.0,
+      "protein": 7.0,
+      "fat": 11.0,
+      "carbs": 34.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Lemon meringue",
+      "cluster": 1,
+      "calories": 300.0,
+      "protein": 4.0,
+      "fat": 12.0,
+      "carbs": 45.0,
+      "fiber": 0.1
+    },
+    {
+      "food": "Mince",
+      "cluster": 4,
+      "calories": 340.0,
+      "protein": 3.0,
+      "fat": 9.0,
+      "carbs": 62.0,
+      "fiber": 0.7
+    },
+    {
+      "food": "Pumpkin Pie",
+      "cluster": 1,
+      "calories": 265.0,
+      "protein": 5.0,
+      "fat": 12.0,
+      "carbs": 34.0,
+      "fiber": 8.0
+    },
+    {
+      "food": "Puddings Sugar",
+      "cluster": 4,
+      "calories": 770.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 199.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "3 teaspoons sugar",
+      "cluster": 1,
+      "calories": 50.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 12.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Syrup",
+      "cluster": 1,
+      "calories": 100.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 25.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "table blends sugar",
+      "cluster": 1,
+      "calories": 110.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 29.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Tapioca cream pudding",
+      "cluster": 1,
+      "calories": 335.0,
+      "protein": 10.0,
+      "fat": 10.0,
+      "carbs": 42.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Almonds",
+      "cluster": 3,
+      "calories": 425.0,
+      "protein": 13.0,
+      "fat": 38.0,
+      "carbs": 13.0,
+      "fiber": 1.8
+    },
+    {
+      "food": "roasted and salted",
+      "cluster": 3,
+      "calories": 439.0,
+      "protein": 13.0,
+      "fat": 40.0,
+      "carbs": 13.0,
+      "fiber": 1.8
+    },
+    {
+      "food": "Brazil nuts",
+      "cluster": 3,
+      "calories": 457.0,
+      "protein": 10.0,
+      "fat": 47.0,
+      "carbs": 7.0,
+      "fiber": 2.0
+    },
+    {
+      "food": "Cashews",
+      "cluster": 3,
+      "calories": 392.0,
+      "protein": 12.0,
+      "fat": 32.0,
+      "carbs": 20.0,
+      "fiber": 0.9
+    },
+    {
+      "food": "coconut sweetened",
+      "cluster": 1,
+      "calories": 274.0,
+      "protein": 1.0,
+      "fat": 20.0,
+      "carbs": 26.0,
+      "fiber": 2.0
+    },
+    {
+      "food": "Peanut butter",
+      "cluster": 1,
+      "calories": 300.0,
+      "protein": 12.0,
+      "fat": 25.0,
+      "carbs": 9.0,
+      "fiber": 0.9
+    },
+    {
+      "food": "Peanut butter, natural",
+      "cluster": 1,
+      "calories": 284.0,
+      "protein": 13.0,
+      "fat": 24.0,
+      "carbs": 8.0,
+      "fiber": 0.9
+    },
+    {
+      "food": "Peanuts",
+      "cluster": 1,
+      "calories": 290.0,
+      "protein": 13.0,
+      "fat": 25.0,
+      "carbs": 9.0,
+      "fiber": 1.2
+    },
+    {
+      "food": "Pecans",
+      "cluster": 3,
+      "calories": 343.0,
+      "protein": 5.0,
+      "fat": 35.0,
+      "carbs": 7.0,
+      "fiber": 1.1
+    },
+    {
+      "food": "Sesame seeds",
+      "cluster": 1,
+      "calories": 280.0,
+      "protein": 9.0,
+      "fat": 24.0,
+      "carbs": 10.0,
+      "fiber": 3.1
+    },
+    {
+      "food": "Sunflower seeds",
+      "cluster": 1,
+      "calories": 280.0,
+      "protein": 12.0,
+      "fat": 26.0,
+      "carbs": 10.0,
+      "fiber": 1.9
+    },
+    {
+      "food": "Walnuts",
+      "cluster": 3,
+      "calories": 325.0,
+      "protein": 7.0,
+      "fat": 32.0,
+      "carbs": 8.0,
+      "fiber": 1.0
+    },
+    {
+      "food": "Carbonated drinks Artificially sweetened",
+      "cluster": 1,
+      "calories": 0.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Club soda",
+      "cluster": 1,
+      "calories": 0.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 0.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Cola drinks",
+      "cluster": 1,
+      "calories": 137.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 38.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Fruit-flavored soda",
+      "cluster": 1,
+      "calories": 161.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 42.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Ginger ale",
+      "cluster": 1,
+      "calories": 105.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 28.0,
+      "fiber": 0.0
+    },
+    {
+      "food": "Root beer",
+      "cluster": 1,
+      "calories": 140.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 35.0,
+      "fiber": 0.0
+    }
+  ]
+}
