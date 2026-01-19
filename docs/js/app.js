@@ -73,6 +73,74 @@ function macroTargets(kcal) {
     carbsG: Math.round(carbKcal / 4),
   };
 }
+// --- Simple food database (per 100g) ---
+const FOODS = [
+  { name: "Овсянка", kcal: 367, p: 12.3, f: 6.1, c: 61.8 },
+  { name: "Греческий йогурт 2%", kcal: 73, p: 10.0, f: 2.0, c: 3.6 },
+  { name: "Яйцо куриное", kcal: 155, p: 13.0, f: 11.0, c: 1.1 },
+  { name: "Банан", kcal: 89, p: 1.1, f: 0.3, c: 23.0 },
+  { name: "Яблоко", kcal: 52, p: 0.3, f: 0.2, c: 14.0 },
+  { name: "Куриная грудка", kcal: 165, p: 31.0, f: 3.6, c: 0.0 },
+  { name: "Рис", kcal: 130, p: 2.7, f: 0.3, c: 28.0 },
+  { name: "Гречка", kcal: 110, p: 3.6, f: 1.2, c: 21.0 },
+  { name: "Творог 5%", kcal: 121, p: 17.0, f: 5.0, c: 3.0 },
+  { name: "Лосось", kcal: 208, p: 20.0, f: 13.0, c: 0.0 },
+  { name: "Овощной салат", kcal: 45, p: 1.2, f: 0.2, c: 9.0 },
+  { name: "Брокколи", kcal: 34, p: 2.8, f: 0.4, c: 7.0 },
+  { name: "Оливковое масло", kcal: 884, p: 0.0, f: 100.0, c: 0.0 },
+  { name: "Хлеб цельнозерновой", kcal: 247, p: 13.0, f: 4.2, c: 41.0 },
+  { name: "Орехи (микс)", kcal: 600, p: 20.0, f: 50.0, c: 20.0 },
+];
+
+// helper: grams for target kcal for a given food
+function gramsForKcal(food, kcalTarget) {
+  // kcal per 1g:
+  const kcalPerG = food.kcal / 100;
+  const g = kcalTarget / kcalPerG;
+  return Math.max(20, Math.round(g)); // keep reasonable minimum
+}
+
+function mealPlanForDay(targetKcal) {
+  // simple meal distribution
+  const dist = {
+    breakfast: 0.28,
+    lunch: 0.35,
+    dinner: 0.27,
+    snack: 0.10,
+  };
+
+  const picks = {
+    breakfast: [FOODS[0], FOODS[1], FOODS[4]], // oats + yogurt + apple
+    lunch: [FOODS[5], FOODS[6], FOODS[11]],    // chicken + rice + broccoli
+    dinner: [FOODS[9], FOODS[7], FOODS[10]],   // salmon + buckwheat + salad
+    snack: [FOODS[8], FOODS[3]],               // cottage cheese + banana
+  };
+
+  function buildMeal(mealKey, title) {
+    const kcalMeal = targetKcal * dist[mealKey];
+    const items = picks[mealKey];
+
+    // split calories between items: 50/30/20 (or 60/40 for snack)
+    const splits = mealKey === "snack" ? [0.6, 0.4] : [0.5, 0.3, 0.2];
+
+    const mealItems = items.map((food, idx) => {
+      const grams = gramsForKcal(food, kcalMeal * splits[idx]);
+      const kcal = Math.round(food.kcal * grams / 100);
+      return { food, grams, kcal };
+    });
+
+    const totalKcal = mealItems.reduce((s, x) => s + x.kcal, 0);
+
+    return { title, totalKcal, items: mealItems };
+  }
+
+  return [
+    buildMeal("breakfast", "Завтрак"),
+    buildMeal("lunch", "Обед"),
+    buildMeal("dinner", "Ужин"),
+    buildMeal("snack", "Перекус"),
+  ];
+}
 
 calcBtn.addEventListener("click", () => {
   const sex = document.getElementById("sex").value;
@@ -94,8 +162,41 @@ calcBtn.addEventListener("click", () => {
 
   const macros = macroTargets(targetKcal);
 
+    const plan = mealPlanForDay(targetKcal);
+
+  const planHtml = plan.map(m => {
+    const itemsHtml = m.items.map(i =>
+      `<li>${i.food.name} — <b>${i.grams} г</b> (≈ ${i.kcal} ккал)</li>`
+    ).join("");
+
+    return `
+      <div class="result" style="margin-top:12px;">
+        <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;">
+          <b>${m.title}</b>
+          <span class="badge">≈ ${m.totalKcal} ккал</span>
+        </div>
+        <ul style="margin:10px 0 0; padding-left: 18px;">
+          ${itemsHtml}
+        </ul>
+      </div>
+    `;
+  }).join("");
+
   resultDiv.innerHTML = `
     <b>Результаты расчёта</b><br>
+    BMR: ${Math.round(bmr)} ккал/сут<br>
+    Суточная норма (с учётом активности): ${Math.round(tdee)} ккал/сут<br>
+    <b>Рекомендованная калорийность:</b> ${Math.round(targetKcal)} ккал/сут<br><br>
+
+    <b>Целевые БЖУ:</b><br>
+    Белки: ${macros.proteinG} г/сут<br>
+    Жиры: ${macros.fatG} г/сут<br>
+    Углеводы: ${macros.carbsG} г/сут<br><br>
+
+    <b>Пример рациона на день</b>
+    ${planHtml}
+  `;
+
     BMR: ${Math.round(bmr)} ккал/сут<br>
     Суточная норма (с учётом активности): ${Math.round(tdee)} ккал/сут<br>
     <b>Рекомендованная калорийность:</b> ${Math.round(targetKcal)} ккал/сут<br><br>
