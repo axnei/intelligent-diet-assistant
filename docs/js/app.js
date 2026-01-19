@@ -10,6 +10,137 @@ const loginError = document.getElementById("loginError");
 const calcBtn = document.getElementById("calcBtn");
 const resultDiv = document.getElementById("result");
 
+// --- ML clusters dataset (loaded from GitHub Pages) ---
+let CLUSTERS_DATA = null;
+
+async function loadClusters() {
+  if (CLUSTERS_DATA) return CLUSTERS_DATA;
+
+  const resp = await fetch("data/clusters.json", { cache: "no-store" });
+  if (!resp.ok) {
+    throw new Error("Не удалось загрузить data/clusters.json (проверь путь и публикацию Pages).");
+  }
+  CLUSTERS_DATA = await resp.json();
+  return CLUSTERS_DATA;
+}
+function pickClusterForGoal(summaryRows, goal) {
+  // summaryRows: [{cluster, calories, protein, fat, carbs, fiber}]
+  // Простая логика выбора:
+  // lose -> минимальные калории + выше клетчатка
+  // gain -> максимальные калории
+  // maintain -> "средний" кластер по калориям
+
+  const byCalories = [...summaryRows].sort((a, b) => a.calories - b.calories);
+
+  if (goal === "lose") {
+    // среди самых низкокалорийных берём тот, где клетчатка выше
+    const low = byCalories.slice(0, Math.min(2, byCalories.length));
+    return low.sort((a, b) => b.fiber - a.fiber)[0].cluster;
+  }
+
+  if (goal === "gain") {
+    return byCalories[byCalories.length - 1].cluster;
+  }
+
+  // maintain: средний по калориям
+  return byCalories[Math.floor(byCalories.length / 2)].cluster;
+}
+
+function buildClusterSummary(items) {
+  // items: [{cluster, calories, protein, fat, carbs, fiber}]
+  const map = new Map();
+  for (const it of items) {
+    if (!map.has(it.cluster)) {
+      map.set(it.cluster, { cluster: it.cluster, n: 0, calories: 0, protein: 0, fat: 0, carbs: 0, fiber: 0 });
+    }
+    const s = map.get(it.cluster);
+    s.n += 1;
+    s.calories += it.calories;
+    s.protein += it.protein;
+    s.fat += it.fat;
+    s.carbs += it.carbs;
+    s.fiber += it.fiber;
+  }
+  const rows = [];
+  for (const s of map.values()) {
+    rows.push({
+      cluster: s.cluster,
+      calories: s.calories / s.n,
+      protein: s.protein / s.n,
+      fat: s.fat / s.n,
+      carbs: s.carbs / s.n,
+      fiber: s.fiber / s.n,
+    });
+  }
+  return rows;
+}
+function chooseRandom(arr, n) {
+  const a = [...arr];
+  // простой shuffle
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a.slice(0, n);
+}
+
+function gramsForKcalFrom100g(food, kcalTarget) {
+  const kcalPerG = food.calories / 100;
+  const g = kcalTarget / kcalPerG;
+  return Math.max(30, Math.round(g));
+}
+
+function buildMealFromFoods(title, foods, kcalTarget) {
+  // распределим калории по продуктам равномерно
+  const perItem = kcalTarget / foods.length;
+
+  const items = foods.map(f => {
+    const grams = gramsForKcalFrom100g(f, perItem);
+    const kcal = Math.round(f.calories * grams / 100);
+    return { name: f.food, grams, kcal };
+  });
+
+  const total = items.reduce((s, x) => s + x.kcal, 0);
+  return { title, totalKcal: total, items };
+}
+
+async function mealPlanUsingML(targetKcal, goal) {
+  const data = await loadClusters();
+
+  const items = data.items.map(x => ({
+    food: x.food,
+    cluster: x.cluster,
+    calories: x.calories,
+    protein: x.protein,
+    fat: x.fat,
+    carbs: x.carbs,
+    fiber: x.fiber,
+  }));
+
+  const summary = buildClusterSummary(items);
+  const chosenCluster = pickClusterForGoal(summary, goal);
+
+  const pool = items.filter(x => x.cluster === chosenCluster);
+
+  // распределение по приёмам пищи
+  const dist = { breakfast: 0.28, lunch: 0.35, dinner: 0.27, snack: 0.10 };
+
+  // выбираем продукты для каждого приема пищи
+  const breakfastFoods = chooseRandom(pool, 3);
+  const lunchFoods = chooseRandom(pool, 3);
+  const dinnerFoods = chooseRandom(pool, 3);
+  const snackFoods = chooseRandom(pool, 2);
+
+  const plan = [
+    buildMealFromFoods("Завтрак", breakfastFoods, targetKcal * dist.breakfast),
+    buildMealFromFoods("Обед", lunchFoods, targetKcal * dist.lunch),
+    buildMealFromFoods("Ужин", dinnerFoods, targetKcal * dist.dinner),
+    buildMealFromFoods("Перекус", snackFoods, targetKcal * dist.snack),
+  ];
+
+  return { plan, chosenCluster, summary };
+}
+
 function show(el) { el.classList.remove("hidden"); }
 function hide(el) { el.classList.add("hidden"); }
 
@@ -142,7 +273,8 @@ function mealPlanForDay(targetKcal) {
   ];
 }
 
-calcBtn.addEventListener("click", () => {
+calcBtn.addEventListener("click", async () => {
+
   const sex = document.getElementById("sex").value;
   const age = Number(document.getElementById("age").value);
   const height = Number(document.getElementById("height").value);
@@ -161,6 +293,38 @@ calcBtn.addEventListener("click", () => {
   const targetKcal = applyGoal(tdee, goal);
 
   const macros = macroTargets(targetKcal);
+  // ML-based plan
+  let mlBlockHtml = "";
+  try {
+    const ml = await mealPlanUsingML(targetKcal, goal);
+
+    const planHtml = ml.plan.map(m => {
+      const itemsHtml = m.items.map(i =>
+        `<li>${i.name} — <b>${i.grams} г</b> (≈ ${i.kcal} ккал)</li>`
+      ).join("");
+
+      return `
+        <div class="result" style="margin-top:12px;">
+          <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;">
+            <b>${m.title}</b>
+            <span class="badge">≈ ${m.totalKcal} ккал</span>
+          </div>
+          <ul style="margin:10px 0 0; padding-left: 18px;">
+            ${itemsHtml}
+          </ul>
+        </div>
+      `;
+    }).join("");
+
+    mlBlockHtml = `
+      <br><b>Рацион на день (на основе ML-кластеризации продуктов)</b><br>
+      <span class="badge">Выбран кластер: ${ml.chosenCluster}</span>
+      ${planHtml}
+      <p class="hint">Примечание: продукты подбираются из группы (кластера), выбранной по цели питания.</p>
+    `;
+  } catch (e) {
+    mlBlockHtml = `<p class="hint">ML-модуль пока недоступен: ${e.message}</p>`;
+  }
 
     const plan = mealPlanForDay(targetKcal);
 
@@ -182,7 +346,7 @@ calcBtn.addEventListener("click", () => {
     `;
   }).join("");
 
-  resultDiv.innerHTML = `
+  resultDiv.innerHTML = ${mlBlockHtml}`
     <b>Результаты расчёта</b><br>
     BMR: ${Math.round(bmr)} ккал/сут<br>
     Суточная норма (с учётом активности): ${Math.round(tdee)} ккал/сут<br>
