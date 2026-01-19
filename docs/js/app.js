@@ -346,7 +346,7 @@ calcBtn.addEventListener("click", async () => {
     `;
   }).join("");
 
-  resultDiv.innerHTML = ${mlBlockHtml}`
+  resultDiv.innerHTML = mlBlockHtml`
     <b>Результаты расчёта</b><br>
     BMR: ${Math.round(bmr)} ккал/сут<br>
     Суточная норма (с учётом активности): ${Math.round(tdee)} ккал/сут<br>
