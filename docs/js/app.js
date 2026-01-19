@@ -346,7 +346,7 @@ calcBtn.addEventListener("click", async () => {
     `;
   }).join("");
 
-  resultDiv.innerHTML = mlBlockHtml
+  resultDiv.innerHTML = `
     <b>Результаты расчёта</b><br>
     BMR: ${Math.round(bmr)} ккал/сут<br>
     Суточная норма (с учётом активности): ${Math.round(tdee)} ккал/сут<br>
@@ -359,15 +359,7 @@ calcBtn.addEventListener("click", async () => {
 
     <b>Пример рациона на день</b>
     ${planHtml}
+    ${mlBlockHtml}
   `;
 
-    BMR: ${Math.round(bmr)} ккал/сут<br>
-    Суточная норма (с учётом активности): ${Math.round(tdee)} ккал/сут<br>
-    <b>Рекомендованная калорийность:</b> ${Math.round(targetKcal)} ккал/сут<br><br>
-    <b>Целевые БЖУ:</b><br>
-    Белки: ${macros.proteinG} г/сут<br>
-    Жиры: ${macros.fatG} г/сут<br>
-    Углеводы: ${macros.carbsG} г/сут
-  `;
   show(resultDiv);
-});
