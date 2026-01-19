@@ -1,75 +1,89 @@
-<div class="container">
-  <h1>Интеллектуальный помощник формирования рациона питания</h1>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Интеллектуальный помощник рациона</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
 
-  <!-- LOGIN -->
-  <section id="loginSection" class="card loginWrap">
+<body>
+  <div class="container">
+    <h1>Интеллектуальный помощник формирования рациона питания</h1>
 
+    <!-- LOGIN -->
+    <section id="loginSection" class="card loginWrap">
+      <h2>Вход</h2>
 
-    <h2>Вход</h2>
-    <label>Логин</label>
-    <input id="login" type="text" placeholder="user или admin" />
+      <label>Логин</label>
+      <input id="login" type="text" placeholder="user или admin" />
 
-    <label>Пароль</label>
-    <input id="password" type="password" placeholder="1234" />
+      <label>Пароль</label>
+      <input id="password" type="password" placeholder="1234" />
 
-    <button id="loginBtn">Войти</button>
-    <p class="hint">Тестовые данные: user / 1234 или admin / 1234</p>
-    <p id="loginError" class="error"></p>
-  </section>
+      <button id="loginBtn">Войти</button>
+      <p class="hint">Тестовые данные: user / 1234 или admin / 1234</p>
+      <p id="loginError" class="error"></p>
+    </section>
 
-  <!-- APP -->
-  <section id="appSection" class="card hidden">
-    <div class="row">
-      <h2>Параметры пользователя</h2>
-      <button id="logoutBtn" class="secondary">Выйти</button>
-    </div>
-
-    <div class="grid">
-      <div>
-        <label>Пол</label>
-        <select id="sex">
-          <option value="female">Женский</option>
-          <option value="male">Мужской</option>
-        </select>
+    <!-- APP -->
+    <section id="appSection" class="card hidden">
+      <div class="row">
+        <h2>Параметры пользователя</h2>
+        <button id="logoutBtn" class="secondary">Выйти</button>
       </div>
 
-      <div>
-        <label>Возраст (лет)</label>
-        <input id="age" type="number" min="10" max="120" value="24">
+      <div class="grid">
+        <div>
+          <label>Пол</label>
+          <select id="sex">
+            <option value="female">Женский</option>
+            <option value="male">Мужской</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Возраст (лет)</label>
+          <input id="age" type="number" min="10" max="120" value="24" />
+        </div>
+
+        <div>
+          <label>Рост (см)</label>
+          <input id="height" type="number" min="120" max="220" value="165" />
+        </div>
+
+        <div>
+          <label>Вес (кг)</label>
+          <input id="weight" type="number" min="35" max="250" value="60" />
+        </div>
+
+        <div>
+          <label>Активность</label>
+          <select id="activity">
+            <option value="1.2">Низкая (1.2)</option>
+            <option value="1.375">Лёгкая (1.375)</option>
+            <option value="1.55" selected>Средняя (1.55)</option>
+            <option value="1.725">Высокая (1.725)</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Цель</label>
+          <select id="goal">
+            <option value="lose">Снижение веса</option>
+            <option value="maintain" selected>Поддержание</option>
+            <option value="gain">Набор массы</option>
+          </select>
+        </div>
       </div>
 
-      <div>
-        <label>Рост (см)</label>
-        <input id="height" type="number" min="120" max="220" value="165">
-      </div>
+      <button id="calcBtn">Рассчитать</button>
 
-      <div>
-        <label>Вес (кг)</label>
-        <input id="weight" type="number" min="35" max="250" value="60">
-      </div>
+      <div id="result" class="result hidden"></div>
+    </section>
+  </div>
 
-      <div>
-        <label>Активность</label>
-        <select id="activity">
-          <option value="1.2">Низкая (1.2)</option>
-          <option value="1.375">Лёгкая (1.375)</option>
-          <option value="1.55" selected>Средняя (1.55)</option>
-          <option value="1.725">Высокая (1.725)</option>
-        </select>
-      </div>
+  <script src="js/app.js"></script>
+</body>
+</html>
 
-      <div>
-        <label>Цель</label>
-        <select id="goal">
-          <option value="lose">Снижение веса</option>
-          <option value="maintain" selected>Поддержание</option>
-          <option value="gain">Набор массы</option>
-        </select>
-      </div>
-    </div>
-
-    <button id="calcBtn">Рассчитать</button>
-
-    <div id="result" class="result hidden"></div>
-  </section>
-</div>
