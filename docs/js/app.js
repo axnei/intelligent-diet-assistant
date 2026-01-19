@@ -363,3 +363,4 @@ calcBtn.addEventListener("click", async () => {
   `;
 
   show(resultDiv);
+}}
