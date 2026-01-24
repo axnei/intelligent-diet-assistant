@@ -280,6 +280,19 @@ async function mealPlanUsingML(targetKcal, goal) {
   const vegPool = pool.filter(x => isVegFruit((x.food || "").toLowerCase()));
   const breakfastPool = pool.filter(x => isBreakfastFood((x.food || "").toLowerCase()));
 
+  function isBreakfastProtein(nameLower) {
+  return ["egg", "eggs", "milk", "yogurt", "cottage", "tofu"].some(k => nameLower.includes(k));
+}
+const breakfastProteinPool = pool.filter(x => isBreakfastProtein((x.food || "").toLowerCase()));
+
+function isLightSnackProtein(nameLower) {
+  const good = ["yogurt", "cottage", "milk", "egg", "eggs", "tofu"];
+  const bad = ["hamburger", "sausage", "steak", "roast", "beef", "pork", "ham"];
+  if (bad.some(k => nameLower.includes(k))) return false;
+  return good.some(k => nameLower.includes(k));
+}
+const snackProteinPool = pool.filter(x => isLightSnackProtein((x.food || "").toLowerCase()));
+
   // распределение по приёмам пищи
   const dist = { breakfast: 0.28, lunch: 0.35, dinner: 0.27, snack: 0.10 };
 
@@ -293,12 +306,16 @@ async function mealPlanUsingML(targetKcal, goal) {
     return picked;
   }
 
-  // ---- Формируем "структурированные" приёмы пищи ----
+  // Формируем "структурированные" приёмы пищи
 
   // Завтрак: 2 "углевод/завтрак" + 1 белок (или fallback)
   const breakfastFoods = [
     ...pick(breakfastPool.length ? breakfastPool : (carbPool.length ? carbPool : pool), 2),
-    ...pick(proteinPool.length ? proteinPool : pool, 1),
+    ...pick(
+  breakfastProteinPool.length ? breakfastProteinPool : (proteinPool.length ? proteinPool : pool),
+  1
+),
+
   ];
 
   // Обед: белок + гарнир + овощ/фрукт
@@ -318,7 +335,11 @@ async function mealPlanUsingML(targetKcal, goal) {
   // Перекус: белок + овощ/фрукт (или fallback)
   const snackFoods = [
     ...pick(proteinPool.length ? proteinPool : pool, 1),
-    ...pick(vegPool.length ? vegPool : pool, 1),
+    ...pick(
+  snackProteinPool.length ? snackProteinPool : (proteinPool.length ? proteinPool : pool),
+  1
+),
+
   ];
 
   const plan = [
