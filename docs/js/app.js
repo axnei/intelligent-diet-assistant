@@ -177,7 +177,7 @@ const chosenCluster = pickClusterForGoal(summary, goal);
 
 let pool = cleanItems.filter(x => x.cluster === chosenCluster);
 if (pool.length < 30) pool = cleanItems;
-}
+
 
   // распределение по приёмам пищи
   const dist = { breakfast: 0.28, lunch: 0.35, dinner: 0.27, snack: 0.10 };
