@@ -120,11 +120,13 @@ async function mealPlanUsingML(targetKcal, goal) {
   const summary = buildClusterSummary(items);
   const chosenCluster = pickClusterForGoal(summary, goal);
 
-  let pool = items.filter(x => x.cluster === chosenCluster);
-// если выбранный кластер слишком маленький — расширяем пул
+let pool = items.filter(x => x.cluster === chosenCluster);
+
+// если кластер слишком маленький — расширяем пул
 if (pool.length < 30) {
   pool = items;
 }
+
 
 
   const pool = items.filter(x => x.cluster === chosenCluster);
