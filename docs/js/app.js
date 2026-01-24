@@ -115,7 +115,7 @@ function gramsForKcalFrom100g(food, kcalTarget) {
 
   // ограничим разумные порции
   g = Math.round(g);
-  g = Math.max(30, Math.min(g, 300)); // 30..300 г
+ g = Math.max(50, Math.min(g, 300));
 
   return g;
 }
@@ -141,7 +141,9 @@ function buildMealFromFoods(title, foods, kcalTarget) {
 // 1) Исключаем то, что редко является самостоятельной едой/порцией
 const ML_EXCLUDED_KEYWORDS = [
   // напитки/вода
-  "water", "club soda", "soda", "soft drink", "beverage", "drink",
+  "water", "club soda", "soda", "soft drink", "beverage", "drink", "beer", "root beer", "cola", "juice", "tea", "drink", "beverage", "soda"
+ "coffee", "wine", "vodka", "whisky"
+
   // сладкие концентраты
   "syrup", "molasses", "sugar", "honey", "jam", "candy", "gum", "marshmallow", "dessert", "candy", "chocolate", "cookie", "cake", "ice cream", "sweet"
 
@@ -248,6 +250,14 @@ if (pool.length < 30) pool = cleanItems;
 }
 
 const proteinPool = pool.filter(x => isProteinFood((x.food || "").toLowerCase()));
+function isBreakfastFood(nameLower) {
+  const good = ["oat", "cereal", "egg", "yogurt", "milk", "cottage", "bread", "banana", "apple", "fruit"];
+  const bad  = ["steak", "liver", "oyster", "shrimp", "corned", "ham", "sausage"];
+  if (bad.some(k => nameLower.includes(k))) return false;
+  return good.some(k => nameLower.includes(k));
+}
+
+const breakfastPool = pool.filter(x => isBreakfastFood((x.food || "").toLowerCase()));
 
 
   // распределение по приёмам пищи
@@ -263,7 +273,7 @@ function pick(pool, n) {
   return picked;
 }
 
-const breakfastFoods = pick(pool, 3);
+const breakfastFoods = pick(breakfastPool.length ? breakfastPool : pool, 3);
 const lunchFoods = [
   ...pick(proteinPool.length ? proteinPool : pool, 1),
   ...pick(pool, 2),
