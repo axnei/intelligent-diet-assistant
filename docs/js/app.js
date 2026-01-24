@@ -213,84 +213,113 @@ async function mealPlanUsingML(targetKcal, goal) {
     carbs: x.carbs,
     fiber: x.fiber,
   }));
-// 1) Очищаем список продуктов от некорректных и "необеденных" вариантов
-const EXCLUDED_KEYWORDS = [
-  "syrup", "molasses", "sugar", "club soda", "soft drink", "water", "diet",
-  "candy", "gum"
-];
 
-const cleanItems = items.filter(x => {
-  // валидные числа
-  if (!Number.isFinite(x.calories)) return false;
-  if (x.calories <= 0) return false;
+  // 1) Очищаем список продуктов от некорректных и "необеденных" вариантов
+  const cleanItems = items.filter(x => {
+    if (!Number.isFinite(x.calories)) return false;
+    if (x.calories <= 0) return false;
 
-  // убираем слишком "пустые" (0-20 ккал/100г — часто вода/напитки)
-  if (x.calories < 20) return false;
+    // убираем слишком "пустые" (0-20 ккал/100г — часто вода/напитки)
+    if (x.calories < 20) return false;
 
-  // убираем слишком концентрированные (сиропы/масла могут давать странные порции)
-  if (x.calories > 600) return false;
+    // убираем слишком концентрированные
+    if (x.calories > 600) return false;
 
-  const name = (x.food || "").toLowerCase();
+    const name = (x.food || "").toLowerCase();
 
-// отбрасываем плохие/обрывочные названия
-if (isBadFoodName(name)) return false;
+    // обрывки/мусорные названия
+    if (isBadFoodName(name)) return false;
 
-// исключаем "нееду" по ключевым словам
-if (ML_EXCLUDED_KEYWORDS.some(k => name.includes(k))) return false;
+    // исключаем "нееду" по ключевым словам
+    if (ML_EXCLUDED_KEYWORDS.some(k => name.includes(k))) return false;
 
-  return true;
-});
+    return true;
+  });
 
-const summary = buildClusterSummary(cleanItems);
-const chosenCluster = pickClusterForGoal(summary, goal);
+  const summary = buildClusterSummary(cleanItems);
+  const chosenCluster = pickClusterForGoal(summary, goal);
 
-let pool = cleanItems.filter(x => x.cluster === chosenCluster);
-if (pool.length < 30) pool = cleanItems;
+  let pool = cleanItems.filter(x => x.cluster === chosenCluster);
+  if (pool.length < 30) pool = cleanItems;
 
-  function isProteinFood(nameLower) {
-  return [
-    "chicken", "turkey", "beef", "pork", "fish", "salmon", "tuna", "shrimp",
-    "egg", "eggs", "cottage", "yogurt", "tofu"
-  ].some(k => nameLower.includes(k));
-}
+  // ---- Классификация "по смыслу" (простые эвристики) ----
+  function hasAny(nameLower, keys) {
+    return keys.some(k => nameLower.includes(k));
+  }
 
-const proteinPool = pool.filter(x => isProteinFood((x.food || "").toLowerCase()));
-function isBreakfastFood(nameLower) {
-  const good = ["oat", "cereal", "egg", "yogurt", "milk", "cottage", "bread", "banana", "apple", "fruit"];
-  const bad  = ["steak", "liver", "oyster", "shrimp", "corned", "ham", "sausage"];
-  if (bad.some(k => nameLower.includes(k))) return false;
-  return good.some(k => nameLower.includes(k));
-}
+  function isProtein(nameLower) {
+    return hasAny(nameLower, [
+      "chicken", "turkey", "beef", "pork", "fish", "salmon", "tuna", "shrimp", "herring",
+      "egg", "eggs", "cottage", "yogurt", "tofu", "liver", "ham"
+    ]);
+  }
 
-const breakfastPool = pool.filter(x => isBreakfastFood((x.food || "").toLowerCase()));
+  function isCarb(nameLower) {
+    return hasAny(nameLower, [
+      "rice", "pasta", "spaghetti", "bread", "roll", "oat", "oatmeal", "cereal",
+      "wheat", "buckwheat", "potato", "sweet potato", "barley", "rye", "corn", "noodle"
+    ]);
+  }
 
+  function isVegFruit(nameLower) {
+    return hasAny(nameLower, [
+      "salad", "broccoli", "tomato", "cucumber", "greens", "spinach", "cabbage", "carrot",
+      "apple", "banana", "berries", "fruit", "vegetable"
+    ]);
+  }
+
+  function isBreakfastFood(nameLower) {
+    const good = ["oat", "oatmeal", "cereal", "egg", "yogurt", "milk", "cottage", "bread", "banana", "apple", "fruit"];
+    const bad  = ["steak", "liver", "oyster", "shrimp", "corned", "ham", "sausage"];
+    if (bad.some(k => nameLower.includes(k))) return false;
+    return good.some(k => nameLower.includes(k));
+  }
+
+  const proteinPool = pool.filter(x => isProtein((x.food || "").toLowerCase()));
+  const carbPool = pool.filter(x => isCarb((x.food || "").toLowerCase()));
+  const vegPool = pool.filter(x => isVegFruit((x.food || "").toLowerCase()));
+  const breakfastPool = pool.filter(x => isBreakfastFood((x.food || "").toLowerCase()));
 
   // распределение по приёмам пищи
   const dist = { breakfast: 0.28, lunch: 0.35, dinner: 0.27, snack: 0.10 };
 
-  // выбираем продукты для каждого приема пищи
- const used = new Set();
+  // выбираем продукты без повторов
+  const used = new Set();
 
-function pick(pool, n) {
-  const candidates = pool.filter(x => !used.has(x.food));
-  const picked = chooseUniqueRandom(candidates.length ? candidates : pool, n);
-  picked.forEach(x => used.add(x.food));
-  return picked;
-}
+  function pick(foodPool, n) {
+    const candidates = foodPool.filter(x => !used.has(x.food));
+    const picked = chooseUniqueRandom(candidates.length ? candidates : foodPool, n);
+    picked.forEach(x => used.add(x.food));
+    return picked;
+  }
 
-const breakfastFoods = pick(breakfastPool.length ? breakfastPool : pool, 3);
-const lunchFoods = [
-  ...pick(proteinPool.length ? proteinPool : pool, 1),
-  ...pick(pool, 2),
-];
+  // ---- Формируем "структурированные" приёмы пищи ----
 
-const dinnerFoods = [
-  ...pick(proteinPool.length ? proteinPool : pool, 1),
-  ...pick(pool, 2),
-];
+  // Завтрак: 2 "углевод/завтрак" + 1 белок (или fallback)
+  const breakfastFoods = [
+    ...pick(breakfastPool.length ? breakfastPool : (carbPool.length ? carbPool : pool), 2),
+    ...pick(proteinPool.length ? proteinPool : pool, 1),
+  ];
 
-const snackFoods = pick(pool, 2);
+  // Обед: белок + гарнир + овощ/фрукт
+  const lunchFoods = [
+    ...pick(proteinPool.length ? proteinPool : pool, 1),
+    ...pick(carbPool.length ? carbPool : pool, 1),
+    ...pick(vegPool.length ? vegPool : pool, 1),
+  ];
 
+  // Ужин: белок + гарнир + овощ/фрукт
+  const dinnerFoods = [
+    ...pick(proteinPool.length ? proteinPool : pool, 1),
+    ...pick(carbPool.length ? carbPool : pool, 1),
+    ...pick(vegPool.length ? vegPool : pool, 1),
+  ];
+
+  // Перекус: белок + овощ/фрукт (или fallback)
+  const snackFoods = [
+    ...pick(proteinPool.length ? proteinPool : pool, 1),
+    ...pick(vegPool.length ? vegPool : pool, 1),
+  ];
 
   const plan = [
     buildMealFromFoods("Завтрак", breakfastFoods, targetKcal * dist.breakfast),
@@ -301,6 +330,7 @@ const snackFoods = pick(pool, 2);
 
   return { plan, chosenCluster, summary };
 }
+
 function chooseUniqueRandom(arr, n) {
   const unique = Array.from(
     new Map(arr.map(x => [x.food, x])).values()
