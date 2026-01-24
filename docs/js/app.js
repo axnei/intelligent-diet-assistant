@@ -140,18 +140,23 @@ function buildMealFromFoods(title, foods, kcalTarget) {
 
 // 1) Исключаем то, что редко является самостоятельной едой/порцией
 const ML_EXCLUDED_KEYWORDS = [
-  // напитки/вода
-  "water", "club soda", "soda", "soft drink", "beverage", "drink", "beer", "root beer", "cola", "juice", "tea", "drink", "beverage", "soda",
- "coffee", "wine", "vodka", "whisky",
+  // напитки
+  "water", "club soda", "soda", "soft drink", "beverage", "drink",
+  "beer", "root beer", "cola", "juice", "tea", "coffee",
+  "wine", "vodka", "whisky",
 
-  // сладкие концентраты
-  "syrup", "molasses", "sugar", "honey", "jam", "candy", "gum", "marshmallow", "dessert", "candy", "chocolate", "cookie", "cake", "ice cream", "sweet"
+  // сладкие концентраты и десерты
+  "syrup", "molasses", "sugar", "honey", "jam",
+  "candy", "marshmallow", "dessert", "chocolate",
+  "cookie", "cake", "ice cream", "sweet", "candied",
 
   // соусы/бульоны/приправы
   "bouillon", "broth", "gravy", "sauce", "seasoning", "spice",
+
   // прочее сомнительное
-  "sweetener", "Candied",
+  "sweetener",
 ];
+
 
 // 2) Ограничения граммовки для "опасных" категорий
 const ML_MAX_GRAMS_RULES = [
