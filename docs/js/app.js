@@ -134,6 +134,28 @@ async function mealPlanUsingML(targetKcal, goal) {
     carbs: x.carbs,
     fiber: x.fiber,
   }));
+// 1) Очищаем список продуктов от некорректных и "необеденных" вариантов
+const EXCLUDED_KEYWORDS = [
+  "syrup", "molasses", "sugar", "club soda", "soft drink", "water", "diet",
+  "candy", "gum"
+];
+
+const cleanItems = items.filter(x => {
+  // валидные числа
+  if (!Number.isFinite(x.calories)) return false;
+  if (x.calories <= 0) return false;
+
+  // убираем слишком "пустые" (0-20 ккал/100г — часто вода/напитки)
+  if (x.calories < 20) return false;
+
+  // убираем слишком концентрированные (сиропы/масла могут давать странные порции)
+  if (x.calories > 600) return false;
+
+  const name = (x.food || "").toLowerCase();
+  if (EXCLUDED_KEYWORDS.some(k => name.includes(k))) return false;
+
+  return true;
+});
 
   const summary = buildClusterSummary(items);
   const chosenCluster = pickClusterForGoal(summary, goal);
