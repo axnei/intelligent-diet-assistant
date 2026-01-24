@@ -103,20 +103,35 @@ function translateFood(name) {
   return FOOD_TRANSLATIONS[name] || name; // если нет перевода — оставляем оригинал
 }
 function gramsForKcalFrom100g(food, kcalTarget) {
-  const kcalPerG = food.calories / 100;
-  const g = kcalTarget / kcalPerG;
-  return Math.max(30, Math.round(g));
-}
+  const cal100 = Number(food.calories);
 
+  // защита от 0/NaN/Infinity
+  if (!Number.isFinite(cal100) || cal100 <= 0) return null;
+
+  const kcalPerG = cal100 / 100;
+  let g = kcalTarget / kcalPerG;
+
+  if (!Number.isFinite(g)) return null;
+
+  // ограничим разумные порции
+  g = Math.round(g);
+  g = Math.max(30, Math.min(g, 300)); // 30..300 г
+
+  return g;
+}
 function buildMealFromFoods(title, foods, kcalTarget) {
-  // распределим калории по продуктам равномерно
   const perItem = kcalTarget / foods.length;
 
-  const items = foods.map(f => {
+  const items = [];
+  for (const f of foods) {
     const grams = gramsForKcalFrom100g(f, perItem);
+    if (grams === null) continue;
+
     const kcal = Math.round(f.calories * grams / 100);
-    return { name: f.food, grams, kcal };
-  });
+    if (!Number.isFinite(kcal)) continue;
+
+    items.push({ name: f.food, grams, kcal });
+  }
 
   const total = items.reduce((s, x) => s + x.kcal, 0);
   return { title, totalKcal: total, items };
@@ -157,14 +172,11 @@ const cleanItems = items.filter(x => {
   return true;
 });
 
-  const summary = buildClusterSummary(items);
-  const chosenCluster = pickClusterForGoal(summary, goal);
+const summary = buildClusterSummary(cleanItems);
+const chosenCluster = pickClusterForGoal(summary, goal);
 
-let pool = items.filter(x => x.cluster === chosenCluster);
-
-// если кластер слишком маленький — расширяем пул
-if (pool.length < 30) {
-  pool = items;
+let pool = cleanItems.filter(x => x.cluster === chosenCluster);
+if (pool.length < 30) pool = cleanItems;
 }
 
   // распределение по приёмам пищи
