@@ -127,9 +127,6 @@ if (pool.length < 30) {
 }
 
 
-  const summary = buildClusterSummary(items);
-  const chosenCluster = pickClusterForGoal(summary, goal);
-
   const pool = items.filter(x => x.cluster === chosenCluster);
 
   // распределение по приёмам пищи
