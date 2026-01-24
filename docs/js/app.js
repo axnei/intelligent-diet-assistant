@@ -127,10 +127,6 @@ if (pool.length < 30) {
   pool = items;
 }
 
-
-
-  const pool = items.filter(x => x.cluster === chosenCluster);
-
   // распределение по приёмам пищи
   const dist = { breakfast: 0.28, lunch: 0.35, dinner: 0.27, snack: 0.10 };
 
