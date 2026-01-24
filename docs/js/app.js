@@ -143,7 +143,8 @@ const ML_EXCLUDED_KEYWORDS = [
   // напитки/вода
   "water", "club soda", "soda", "soft drink", "beverage", "drink",
   // сладкие концентраты
-  "syrup", "molasses", "sugar", "honey", "jam", "candy", "gum",
+  "syrup", "molasses", "sugar", "honey", "jam", "candy", "gum", "marshmallow", "dessert", "candy", "chocolate", "cookie", "cake", "ice cream", "sweet"
+
   // соусы/бульоны/приправы
   "bouillon", "broth", "gravy", "sauce", "seasoning", "spice",
   // прочее сомнительное
@@ -170,6 +171,14 @@ function isBadFoodName(nameLower) {
 
   // совсем без букв (на всякий)
   if (!/[a-z]/.test(nameLower)) return true;
+  
+  // обрывки/части описания (часто появляются как куски)
+  if (nameLower.includes("undiluted")) return true;
+  if (nameLower.startsWith("evaporated")) return true;
+
+  // слишком общее слово без уточнений
+  const tooGeneric = ["leg roasted", "leg", "whole-wheat", "all purpose"];
+  if (tooGeneric.some(t => nameLower.includes(t))) return true;
 
   return false;
 }
@@ -231,6 +240,15 @@ const chosenCluster = pickClusterForGoal(summary, goal);
 let pool = cleanItems.filter(x => x.cluster === chosenCluster);
 if (pool.length < 30) pool = cleanItems;
 
+  function isProteinFood(nameLower) {
+  return [
+    "chicken", "turkey", "beef", "pork", "fish", "salmon", "tuna", "shrimp",
+    "egg", "eggs", "cottage", "yogurt", "tofu"
+  ].some(k => nameLower.includes(k));
+}
+
+const proteinPool = pool.filter(x => isProteinFood((x.food || "").toLowerCase()));
+
 
   // распределение по приёмам пищи
   const dist = { breakfast: 0.28, lunch: 0.35, dinner: 0.27, snack: 0.10 };
@@ -246,8 +264,16 @@ function pick(pool, n) {
 }
 
 const breakfastFoods = pick(pool, 3);
-const lunchFoods = pick(pool, 3);
-const dinnerFoods = pick(pool, 3);
+const lunchFoods = [
+  ...pick(proteinPool.length ? proteinPool : pool, 1),
+  ...pick(pool, 2),
+];
+
+const dinnerFoods = [
+  ...pick(proteinPool.length ? proteinPool : pool, 1),
+  ...pick(pool, 2),
+];
+
 const snackFoods = pick(pool, 2);
 
 
