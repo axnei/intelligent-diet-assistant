@@ -298,30 +298,31 @@ calcBtn.addEventListener("click", async () => {
   try {
     const ml = await mealPlanUsingML(targetKcal, goal);
 
-    const planHtml = ml.plan.map(m => {
-      const itemsHtml = m.items.map(i =>
-        `<li>${i.name} — <b>${i.grams} г</b> (≈ ${i.kcal} ккал)</li>`
-      ).join("");
+const mlPlanHtml = ml.plan.map(m => {
+  const itemsHtml = m.items.map(i =>
+    `<li>${i.name} — <b>${i.grams} г</b> (≈ ${i.kcal} ккал)</li>`
+  ).join("");
 
-      return `
-        <div class="result" style="margin-top:12px;">
-          <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;">
-            <b>${m.title}</b>
-            <span class="badge">≈ ${m.totalKcal} ккал</span>
-          </div>
-          <ul style="margin:10px 0 0; padding-left: 18px;">
-            ${itemsHtml}
-          </ul>
-        </div>
-      `;
-    }).join("");
+  return `
+    <div class="result" style="margin-top:12px;">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;">
+        <b>${m.title}</b>
+        <span class="badge">≈ ${m.totalKcal} ккал</span>
+      </div>
+      <ul style="margin:10px 0 0; padding-left: 18px;">
+        ${itemsHtml}
+      </ul>
+    </div>
+  `;
+}).join("");
 
-    mlBlockHtml = `
-      <br><b>Рацион на день (на основе ML-кластеризации продуктов)</b><br>
-      <span class="badge">Выбран кластер: ${ml.chosenCluster}</span>
-      ${planHtml}
-      <p class="hint">Примечание: продукты подбираются из группы (кластера), выбранной по цели питания.</p>
-    `;
+mlBlockHtml = `
+  <br><b>Рацион на день (на основе ML-кластеризации продуктов)</b><br>
+  <span class="badge">Выбран кластер: ${ml.chosenCluster}</span>
+  ${mlPlanHtml}
+  <p class="hint">Примечание: продукты подбираются из группы (кластера), выбранной по цели питания.</p>
+`;
+
   } catch (e) {
     mlBlockHtml = `<p class="hint">ML-модуль пока недоступен: ${e.message}</p>`;
   }
