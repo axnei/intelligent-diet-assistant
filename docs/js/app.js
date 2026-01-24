@@ -364,4 +364,4 @@ mlBlockHtml = `
   `;
 
   show(resultDiv);
-};
+});
