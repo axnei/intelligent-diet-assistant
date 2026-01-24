@@ -150,7 +150,7 @@ const ML_EXCLUDED_KEYWORDS = [
   // соусы/бульоны/приправы
   "bouillon", "broth", "gravy", "sauce", "seasoning", "spice",
   // прочее сомнительное
-  "sweetener", "Candied"
+  "sweetener", "Candied",
 ];
 
 // 2) Ограничения граммовки для "опасных" категорий
