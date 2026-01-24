@@ -343,7 +343,7 @@ calcBtn.addEventListener("click", async () => {
 
 const mlPlanHtml = ml.plan.map(m => {
   const itemsHtml = m.items.map(i =>
-    `<li>${i.name} — <b>${i.grams} г</b> (≈ ${i.kcal} ккал)</li>`
+    `<li>${translateFood(i.name)} — <b>${i.grams} г</b> (≈ ${i.kcal} ккал)</li>`
   ).join("");
 
   return `
