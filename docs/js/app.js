@@ -142,7 +142,7 @@ function buildMealFromFoods(title, foods, kcalTarget) {
 const ML_EXCLUDED_KEYWORDS = [
   // напитки/вода
   "water", "club soda", "soda", "soft drink", "beverage", "drink", "beer", "root beer", "cola", "juice", "tea", "drink", "beverage", "soda"
- "coffee", "wine", "vodka", "whisky"
+ "coffee", "wine", "vodka", "whisky",
 
   // сладкие концентраты
   "syrup", "molasses", "sugar", "honey", "jam", "candy", "gum", "marshmallow", "dessert", "candy", "chocolate", "cookie", "cake", "ice cream", "sweet"
