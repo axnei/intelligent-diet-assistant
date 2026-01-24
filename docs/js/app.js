@@ -120,16 +120,36 @@ async function mealPlanUsingML(targetKcal, goal) {
   const summary = buildClusterSummary(items);
   const chosenCluster = pickClusterForGoal(summary, goal);
 
+  let pool = items.filter(x => x.cluster === chosenCluster);
+// если выбранный кластер слишком маленький — расширяем пул
+if (pool.length < 30) {
+  pool = items;
+}
+
+
+  const summary = buildClusterSummary(items);
+  const chosenCluster = pickClusterForGoal(summary, goal);
+
   const pool = items.filter(x => x.cluster === chosenCluster);
 
   // распределение по приёмам пищи
   const dist = { breakfast: 0.28, lunch: 0.35, dinner: 0.27, snack: 0.10 };
 
   // выбираем продукты для каждого приема пищи
-  const breakfastFoods = chooseRandom(pool, 3);
-  const lunchFoods = chooseRandom(pool, 3);
-  const dinnerFoods = chooseRandom(pool, 3);
-  const snackFoods = chooseRandom(pool, 2);
+ const used = new Set();
+
+function pick(pool, n) {
+  const candidates = pool.filter(x => !used.has(x.food));
+  const picked = chooseUniqueRandom(candidates.length ? candidates : pool, n);
+  picked.forEach(x => used.add(x.food));
+  return picked;
+}
+
+const breakfastFoods = pick(pool, 3);
+const lunchFoods = pick(pool, 3);
+const dinnerFoods = pick(pool, 3);
+const snackFoods = pick(pool, 2);
+
 
   const plan = [
     buildMealFromFoods("Завтрак", breakfastFoods, targetKcal * dist.breakfast),
@@ -139,6 +159,17 @@ async function mealPlanUsingML(targetKcal, goal) {
   ];
 
   return { plan, chosenCluster, summary };
+}
+function chooseUniqueRandom(arr, n) {
+  const unique = Array.from(
+    new Map(arr.map(x => [x.food, x])).values()
+  );
+  const a = [...unique];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a.slice(0, Math.min(n, a.length));
 }
 
 function show(el) { el.classList.remove("hidden"); }
