@@ -136,6 +136,54 @@ function buildMealFromFoods(title, foods, kcalTarget) {
   const total = items.reduce((s, x) => s + x.kcal, 0);
   return { title, totalKcal: total, items };
 }
+// Правила разумности для ML-рациона 
+
+// 1) Исключаем то, что редко является самостоятельной едой/порцией
+const ML_EXCLUDED_KEYWORDS = [
+  // напитки/вода
+  "water", "club soda", "soda", "soft drink", "beverage", "drink",
+  // сладкие концентраты
+  "syrup", "molasses", "sugar", "honey", "jam", "candy", "gum",
+  // соусы/бульоны/приправы
+  "bouillon", "broth", "gravy", "sauce", "seasoning", "spice",
+  // прочее сомнительное
+  "sweetener"
+];
+
+// 2) Ограничения граммовки для "опасных" категорий
+const ML_MAX_GRAMS_RULES = [
+  { match: ["oil", "butter", "margarine"], maxG: 20 },   // масла/жиры
+  { match: ["cream cheese", "cheese"], maxG: 80 },       // сыр
+  { match: ["cream", "custard"], maxG: 150 },            // крем/пудинги
+  { match: ["nuts", "peanut", "almond", "cashew"], maxG: 60 }, // орехи
+];
+
+// 3) Отбрасываем "плохие" названия (обрывки, служебные фразы)
+function isBadFoodName(nameLower) {
+  if (!nameLower) return true;
+
+  // обрывки вида "with tomatoes and cheese"
+  if (nameLower.startsWith("with ")) return true;
+
+  // слишком коротко/пусто
+  if (nameLower.length < 4) return true;
+
+  // совсем без букв (на всякий)
+  if (!/[a-z]/.test(nameLower)) return true;
+
+  return false;
+}
+
+function clampByCategory(foodNameLower, grams) {
+  let g = grams;
+  for (const rule of ML_MAX_GRAMS_RULES) {
+    if (rule.match.some(m => foodNameLower.includes(m))) {
+      g = Math.min(g, rule.maxG);
+      break;
+    }
+  }
+  return g;
+}
 
 async function mealPlanUsingML(targetKcal, goal) {
   const data = await loadClusters();
@@ -167,7 +215,12 @@ const cleanItems = items.filter(x => {
   if (x.calories > 600) return false;
 
   const name = (x.food || "").toLowerCase();
-  if (EXCLUDED_KEYWORDS.some(k => name.includes(k))) return false;
+
+// отбрасываем плохие/обрывочные названия
+if (isBadFoodName(name)) return false;
+
+// исключаем "нееду" по ключевым словам
+if (ML_EXCLUDED_KEYWORDS.some(k => name.includes(k))) return false;
 
   return true;
 });
