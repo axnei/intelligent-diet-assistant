@@ -10,7 +10,7 @@ const loginError = document.getElementById("loginError");
 const calcBtn = document.getElementById("calcBtn");
 const resultDiv = document.getElementById("result");
 
-// --- ML clusters dataset (loaded from GitHub Pages) ---
+// Набор данных кластеров машинного обучения 
 let CLUSTERS_DATA = null;
 
 async function loadClusters() {
@@ -25,7 +25,7 @@ async function loadClusters() {
 }
 function pickClusterForGoal(summaryRows, goal) {
   // summaryRows: [{cluster, calories, protein, fat, carbs, fiber}]
-  // Простая логика выбора:
+  // Логика выбора:
   // lose -> минимальные калории + выше клетчатка
   // gain -> максимальные калории
   // maintain -> "средний" кластер по калориям
@@ -84,6 +84,24 @@ function chooseRandom(arr, n) {
   return a.slice(0, n);
 }
 
+// Перевод названий продуктов (EN → RU) для ML-рациона
+const FOOD_TRANSLATIONS = {
+  "Safflower seed oil": "Масло сафлоровое",
+  "Corned beef": "Солонина (говядина)",
+  "Lamb, chop, broiled": "Баранина (отбивная, жареная)",
+  "Cashews": "Кешью",
+  "Rye": "Рожь",
+  "Ham, canned, spiced": "Ветчина консервированная",
+  "Cream soups": "Крем-суп",
+  "Spaghetti with meat sauce": "Спагетти с мясным соусом",
+  "Syrup": "Сироп",
+  "Lemon meringue": "Лимонный десерт",
+  "Roasted chicken": "Курица запечённая"
+};
+
+function translateFood(name) {
+  return FOOD_TRANSLATIONS[name] || name; // если нет перевода — оставляем оригинал
+}
 function gramsForKcalFrom100g(food, kcalTarget) {
   const kcalPerG = food.calories / 100;
   const g = kcalTarget / kcalPerG;
@@ -180,7 +198,7 @@ function setLoggedIn(isLoggedIn) {
   }
 }
 
-// --- Prototype auth (for demo) ---
+// Протип аутенфикации
 loginBtn.addEventListener("click", () => {
   const u = (loginInput.value || "").trim();
   const p = (passInput.value || "").trim();
@@ -205,7 +223,7 @@ logoutBtn.addEventListener("click", () => {
 // Auto-login if already set
 setLoggedIn(!!localStorage.getItem("demoUser"));
 
-// --- Nutrition logic (Mifflin–St Jeor) ---
+// Логика питания (Миффлин-Сент-Джеор)
 function mifflinStJeor({ sex, weightKg, heightCm, ageYears }) {
   // BMR
   const s = sex === "male" ? 5 : -161;
@@ -230,7 +248,7 @@ function macroTargets(kcal) {
     carbsG: Math.round(carbKcal / 4),
   };
 }
-// --- Simple food database (per 100g) ---
+// БД продуктов питания (на 100 г)
 const FOODS = [
   { name: "Овсянка", kcal: 367, p: 12.3, f: 6.1, c: 61.8 },
   { name: "Греческий йогурт 2%", kcal: 73, p: 10.0, f: 2.0, c: 3.6 },
@@ -249,16 +267,15 @@ const FOODS = [
   { name: "Орехи (микс)", kcal: 600, p: 20.0, f: 50.0, c: 20.0 },
 ];
 
-// helper: grams for target kcal for a given food
+// Граммы для целевого количества ккал для данного продукта
 function gramsForKcal(food, kcalTarget) {
   // kcal per 1g:
   const kcalPerG = food.kcal / 100;
   const g = kcalTarget / kcalPerG;
-  return Math.max(20, Math.round(g)); // keep reasonable minimum
+  return Math.max(20, Math.round(g)); // разумный минимум
 }
 
 function mealPlanForDay(targetKcal) {
-  // simple meal distribution
   const dist = {
     breakfast: 0.28,
     lunch: 0.35,
@@ -277,7 +294,7 @@ function mealPlanForDay(targetKcal) {
     const kcalMeal = targetKcal * dist[mealKey];
     const items = picks[mealKey];
 
-    // split calories between items: 50/30/20 (or 60/40 for snack)
+    // распределение каллорий
     const splits = mealKey === "snack" ? [0.6, 0.4] : [0.5, 0.3, 0.2];
 
     const mealItems = items.map((food, idx) => {
