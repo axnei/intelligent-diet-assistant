@@ -1,23 +1,25 @@
-# Intelligent Diet Assistant
+# Интеллектуальный помощник формирования рациона питания
 
-This repository contains project materials developed as part of the pre-graduation practice for the bachelor thesis  
-**"Development of an Intelligent Assistant for Diet Planning"**.
+Данный репозиторий содержит материалы проекта, разработанного в рамках выполнения выпускной квалификационной работы бакалавра  
+**«Разработка интеллектуального помощника формирования рациона питания»**.
 
-## Project description
-The project is aimed at developing an intelligent assistant that helps users form an individual diet based on their personal parameters and nutritional goals.
+## Описание проекта
+Проект направлен на разработку информационной системы, предназначенной для формирования персонализированного рациона питания на основе индивидуальных параметров пользователя и целей питания.
 
-At the stage of pre-graduation practice, the following materials were prepared:
-- analysis of the subject area;
-- functional and non-functional requirements;
-- user interface prototype;
-- user flow diagram;
-- description of the planned technological implementation.
+В рамках выполнения выпускной квалификационной работы были выполнены следующие этапы:
+- проведён анализ предметной области и бизнес-процессов;
+- сформированы функциональные и нефункциональные требования;
+- разработана архитектура информационной системы;
+- создан прототип пользовательского интерфейса;
+- реализован программный прототип веб-приложения;
+- использован набор данных (датасет) для формирования рекомендаций по рациону питания.
 
-## Repository structure
-- `/prototype` — user interface prototype and user flow diagrams;
-- `/site` — basic HTML prototype of the web interface;
-- `/docs` — project description and documentation.
+## Структура репозитория
+- `/prototype` — прототип пользовательского интерфейса и диаграммы пользовательских сценариев;
+- `/site` — программный прототип веб-интерфейса информационной системы;
+- `/ml` — скрипты обработки данных и элементы интеллектуального анализа;
+- `/docs` — проектная и пояснительная документация.
 
-## Project status
-The repository represents a prototype and project documentation.  
-The full software implementation and data processing will be developed as part of the bachelor thesis.
+## Статус проекта
+Репозиторий содержит программный прототип и проектную документацию, разработанные в рамках выпускной квалификационной работы.  
+Дальнейшее развитие системы возможно в рамках последующих этапов проектирования и внедрения.
